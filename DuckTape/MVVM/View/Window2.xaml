@@ -1,0 +1,106 @@
+﻿<Window x:Class="DuckTape.MVVM.View.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DuckTape.MVVM.View"
+        Background="Black" Opacity="0.85" 
+        AllowsTransparency="True"
+        WindowStyle="None" WindowState="Maximized"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded" d:DesignHeight="798.763">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <!-- Left column -->
+            <ColumnDefinition Width="1*"/>
+            <!-- Right column -->
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Top row -->
+            <RowDefinition Height="*"/>
+            <!-- Middle row -->
+            <RowDefinition Height="*"/>
+            <!-- Bottom row -->
+        </Grid.RowDefinitions>
+
+        <!-- Top Left -->
+        <Label x:Name="topLeftLabel" Content="For security purposes, please disconnect this device if you do not trust it." HorizontalAlignment="Center" VerticalAlignment="Top" Margin="30" Foreground="Red"/>
+
+        <!-- Mid Left -->
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="30">
+            <Label x:Name="label1" Content="Captcha" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" FontStyle="Italic" Foreground="Red"/>
+            <Label x:Name="saltLabel" Content="Please append the salt from the 's.txt' file on your desktop to the end of the captcha displayed above. Enter the combined text in the textbox below." Foreground="Red" Margin="50,10,0,0"/>
+        </StackPanel>
+
+        <!-- Bottom Left -->
+        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30">
+            <TextBox x:Name="textBox1" Foreground="SpringGreen" Width="238" Height="20" TextAlignment="Center" Margin="0,10,0,0"/>
+            <Button x:Name="button1" Content="Verify" Click="button1_Click" Background="#ff3131" Foreground="White" FontSize="24" BorderThickness="0" IsDefault="True" Width="443" Height="55" Margin="5" >
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CornerRadius="12"
+                    Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <!-- Top Right -->
+        <TextBlock x:Name="topRightTextBlock" Text="If you notice any malicious activities" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,86,0" Foreground="Red"/>
+        <TextBlock Text="or inputs in this log, kindly save the log for further investigation." TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="25" Foreground="Red"/>
+
+        <!-- Mid Right -->
+        <Grid Grid.Column="1" Margin="30,186,30,184" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="115*"/>
+                <ColumnDefinition Width="166*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Row for the "Attempts:" label -->
+                <RowDefinition Height="*"/>
+                <!-- Row for the ListBox -->
+            </Grid.RowDefinitions>
+
+            <Label x:Name="attemptsLabel" Content="Attempts:" Foreground="Red" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <ListBox x:Name="logListBox" Grid.Row="1" Height="Auto" Background="Transparent" Foreground="Red" BorderBrush="Transparent" Margin="79,0,59,5" Grid.ColumnSpan="2"/>
+        </Grid>
+
+
+        <!-- Bottom Right -->
+        <Button x:Name="saveButton" Content="Save Log" Click="saveButton_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#ff3131" Foreground="White" FontSize="24" BorderThickness="0" Height="55" Width="338" Margin="0,173,0,0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CornerRadius="12" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</Window>
